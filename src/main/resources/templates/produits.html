@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des produits</title>
+</head>
+<body>
+<h1>Produits</h1>
+
+<form th:action="@{/produits}" method="get">
+    <input type="text" name="mc" th:value="${mc}" placeholder="Mot-clé"/>
+    <button type="submit">Rechercher</button>
+    <a th:href="@{/produits/nouveau}">+ Nouveau</a>
+</form>
+
+<table border="1">
+    <tr><th>ID</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Actions</th></tr>
+    <tr th:each="p : ${listeProduits}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.designation}"></td>
+        <td th:text="${p.prix}"></td>
+        <td th:text="${p.quantite}"></td>
+        <td>
+            <a th:href="@{'/produits/edit/' + ${p.id}}">✎</a>
+            <a th:href="@{'/produits/supprimer/' + ${p.id}}"
+               onclick="return confirm('Supprimer ?');">🗑</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
