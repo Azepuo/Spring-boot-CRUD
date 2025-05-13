@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Formulaire Produit</title>
+  <meta charset="UTF-8"/>
+  <title th:if="${produit.id == null}">Ajouter un produit</title>
+  <title th:if="${produit.id != null}">Modifier le produit</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1 th:text="${produit.id}==null? 'Ajouter un produit' : 'Modifier le produit'}"></h1>
 
-<form th:action="@{/produits/save}" th:object="${produit}" method="post">
-    <input type="hidden" th:field="*{id}" />
+  <div class="form-container">
+    <h2 th:if="${produit.id == null}">Ajouter un produit</h2>
+    <h2 th:if="${produit.id != null}">
+      Modifier produit n°<span th:text="${produit.id}"></span>
+    </h2>
 
-    <label>Désignation :</label>
-    <input type="text" th:field="*{designation}" required/><br/>
+    <form th:action="@{/produits/save}" th:object="${produit}" method="post">
+      <input type="hidden" th:field="*{id}"/>
 
-    <label>Prix :</label>
-    <input type="number" step="0.01" th:field="*{prix}" required/><br/>
+      <div class="form-group">
+        <label>Désignation</label>
+        <input type="text" th:field="*{designation}" placeholder="Ex : Stylo Bic" required/>
+      </div>
 
-    <label>Quantité :</label>
-    <input type="number" th:field="*{quantite}" required/><br/>
+      <div class="form-group">
+        <label>Prix (€)</label>
+        <input type="number" step="0.01" th:field="*{prix}" placeholder="Ex : 1.99" required/>
+      </div>
 
-    <button type="submit">Enregistrer</button>
-    <a th:href="@{/produits}">Annuler</a>
-</form>
+      <div class="form-group">
+        <label>Quantité</label>
+        <input type="number" th:field="*{quantite}" placeholder="Ex : 100" required/>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">Enregistrer</button>
+        <a th:href="@{/produits}" class="button">Annuler</a>
+      </div>
+    </form>
+  </div>
+
 </body>
 </html>

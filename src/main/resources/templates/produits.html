@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Liste des produits</title>
+  <meta charset="UTF-8"/>
+  <title>Liste des produits</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>Produits</h1>
 
-<form th:action="@{/produits}" method="get">
-    <input type="text" name="mc" th:value="${mc}" placeholder="Mot-clé"/>
-    <button type="submit">Rechercher</button>
-    <a th:href="@{/produits/nouveau}">+ Nouveau</a>
-</form>
+  <div class="main-container">
+    <h1>Produits</h1>
 
-<table border="1">
-    <tr><th>ID</th><th>Désignation</th><th>Prix</th><th>Quantité</th><th>Actions</th></tr>
-    <tr th:each="p : ${listeProduits}">
-        <td th:text="${p.id}"></td>
-        <td th:text="${p.designation}"></td>
-        <td th:text="${p.prix}"></td>
-        <td th:text="${p.quantite}"></td>
-        <td>
-            <a th:href="@{'/produits/edit/' + ${p.id}}">✎</a>
+    <div class="search-bar">
+      <form th:action="@{/produits}" method="get" style="display:flex; flex:1;">
+        <input type="text" name="mc" th:value="${mc}" placeholder="Mot-clé"/>
+      </form>
+      <button onclick="document.forms[0].submit()">Rechercher</button>
+      <a th:href="@{/produits/nouveau}" class="button">+ Nouveau produit</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Désignation</th>
+          <th>Prix (€)</th>
+          <th>Quantité</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="p : ${listeProduits}">
+          <td th:text="${p.id}">1</td>
+          <td th:text="${p.designation}">Produit</td>
+          <td th:text="${#numbers.formatDecimal(p.prix, 1, 'COMMA', 2, 'POINT')}">0,00</td>
+          <td th:text="${p.quantite}">0</td>
+          <td>
+            <a th:href="@{'/produits/edit/' + ${p.id}}"
+               class="action-btn edit-btn">✎</a>
             <a th:href="@{'/produits/supprimer/' + ${p.id}}"
-               onclick="return confirm('Supprimer ?');">🗑</a>
-        </td>
-    </tr>
-</table>
+               onclick="return confirm('Supprimer ce produit ?');"
+               class="action-btn delete-btn">🗑</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </body>
 </html>

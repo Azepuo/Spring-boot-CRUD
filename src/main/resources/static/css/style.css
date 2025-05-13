@@ -1,30 +1,146 @@
 /* style.css */
 
-/* Fond léger pour le body */
+/* Style global */
 body {
-  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
 }
 
-/* Marges autour du container principal */
-.container {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+/* Conteneur centré */
+.main-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
 }
 
-/* Ombre légère pour la table et la carte */
-.table {
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.card {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+/* Titre principal */
+h1 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
-/* Style des boutons */
-.btn-primary {
-  background-color: #0069d9;
-  border-color: #0062cc;
+/* Formulaire de recherche et bouton */
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
-.btn-primary:hover {
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.search-bar button,
+.search-bar a.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.search-bar button:hover,
+.search-bar a.button:hover {
   background-color: #0056b3;
-  border-color: #004085;
+}
+
+/* Table produits */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+table thead {
+  background-color: #007bff;
+  color: #fff;
+}
+table th, table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Boutons d’action */
+.action-btn {
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.25rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.edit-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.action-btn:hover {
+  opacity: 0.8;
+}
+
+/* Formulaire de création/modification */
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+}
+.form-container h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #333;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #555;
+}
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-actions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.form-actions button,
+.form-actions a.button {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+.form-actions a.button {
+  background-color: #6c757d;
+}
+.form-actions button:hover,
+.form-actions a.button:hover {
+  opacity: 0.9;
 }
